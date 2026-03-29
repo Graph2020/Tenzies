@@ -2,5 +2,9 @@
 
 @theme {
   --color-primary: "#59E391";
-  --color-secondary: "#5035FF";
+  --color-secondary: "#2B283A";
+}
+
+@utility die {
+  @apply text-secondary size-12 rounded-sm bg-[#F5F5F5] text-lg shadow-lg;
 }
