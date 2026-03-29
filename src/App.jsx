@@ -4,6 +4,10 @@ import { nanoid } from "nanoid";
 function App() {
   const [dices, setDices] = useState(generateAllDices());
 
+  const gameWon = dices.every(
+    (die) => die.isHeld && dices[0].value === die.value,
+  );
+
   function randomNum() {
     return Math.ceil(Math.random() * 6);
   }
@@ -14,7 +18,7 @@ function App() {
       id: nanoid(),
     }));
   }
-
+  // func allow us not to roll holded dices
   function rollDices() {
     setDices((holdDices) =>
       holdDices.map((die) =>
@@ -22,6 +26,7 @@ function App() {
       ),
     );
   }
+
   function hold(id) {
     setDices((prevDices) =>
       prevDices.map((die) => (die.id === id ? { ...die, isHeld: true } : die)),
@@ -55,7 +60,7 @@ function App() {
           onClick={rollDices}
           className="cursor-pointer rounded-lg bg-[#5035FF] px-5 py-2.5 text-lg font-bold tracking-wider text-white"
         >
-          Roll
+          {gameWon ? "New Game" : "Roll"}
         </button>
       </div>
     </main>
