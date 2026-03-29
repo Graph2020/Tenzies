@@ -3,16 +3,38 @@ import { useState } from "react";
 import { nanoid } from "nanoid";
 function App() {
   const [dices, setDices] = useState(generateAllDices());
+
+  function randomNum() {
+    return Math.ceil(Math.random() * 6);
+  }
   function generateAllDices() {
     return new Array(10).fill().map(() => ({
-      value: Math.ceil(Math.random() * 6),
+      value: randomNum(),
       isHeld: false,
       id: nanoid(),
     }));
   }
 
+  function rollDices() {
+    setDices((holdDices) =>
+      holdDices.map((die) =>
+        die.isHeld ? die : { ...die, value: randomNum() },
+      ),
+    );
+  }
+  function hold(id) {
+    setDices((prevDices) =>
+      prevDices.map((die) => (die.id === id ? { ...die, isHeld: true } : die)),
+    );
+  }
+
   const dieElements = dices.map((die) => (
-    <Die value={die.value} isHeld={die.isHeld} key={die.id} />
+    <Die
+      holdingDice={() => hold(die.id)}
+      value={die.value}
+      isHeld={die.isHeld}
+      key={die.id}
+    />
   ));
   return (
     <main className="flex min-h-screen w-full items-center justify-center bg-[#0B2434]">
@@ -30,7 +52,7 @@ function App() {
         {/* dices */}
         <div className="flex flex-wrap justify-center gap-4">{dieElements}</div>
         <button
-          onClick={() => setDices(generateAllDices())}
+          onClick={rollDices}
           className="cursor-pointer rounded-lg bg-[#5035FF] px-5 py-2.5 text-lg font-bold tracking-wider text-white"
         >
           Roll

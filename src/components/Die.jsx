@@ -1,6 +1,9 @@
-function Die({ value, isHeld }) {
+function Die({ value, isHeld, holdingDice }) {
   return (
-    <button className={`die ${isHeld ? "bg-primary" : "bg-white"}`}>
+    <button
+      onClick={holdingDice}
+      className={`die ${isHeld ? "bg-primary" : "bg-white"}`}
+    >
       {value}
     </button>
   );
