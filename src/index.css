@@ -1,10 +1,10 @@
 @import "tailwindcss";
 
 @theme {
-  --color-primary: "#59E391";
-  --color-secondary: "#2B283A";
+  --color-primary: #59e391;
+  --color-secondary: #2b283a;
 }
 
 @utility die {
-  @apply text-secondary size-12 rounded-sm bg-[#F5F5F5] text-lg shadow-lg;
+  @apply text-secondary size-12 rounded-sm text-lg shadow-lg;
 }
