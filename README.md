@@ -7,6 +7,11 @@ you don't get all the dices with the same number
 * Tailwind
 * Vite
 
+# How to run the project 
+* Clone Repo
+* Install dependencies: npm install
+* Run the development server: npm run dev
+* Open in your browser: http://localhost:5173
 
 # Preview 
 
